@@ -9,6 +9,9 @@ ul
 - @microposts.each do |micropost|
   = image_tag micropost.picture.url if micropost.picture?
 
+/ f.file_fieldをフォームヘルパー使わず出力する場合は、
+/ form_withのオプションで、mulitipart: true をつけないと
+/ ファイルアップロードできないので注意。
 = form_with model: Micropost.new, url: microposts_create_path do |f|
   = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
   = f.submit
